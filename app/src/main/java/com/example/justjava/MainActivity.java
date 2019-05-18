@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method is called when the order button is clicked.
      */
-    public void SumbitOrder(View view) {
+    public void SubmitOrder(View view) {
         display(1);
     }
 
