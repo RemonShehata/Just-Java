@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
         boolean hasChocolate = chocolateCheckBox.isChecked();
         String name = nameEditText.getText().toString();
-        int price = calculatePrice();
+        int price = calculatePrice(hasWhippedCream, hasChocolate);
         String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate, name);
         displayMessage(priceMessage);
     }
@@ -69,9 +69,15 @@ public class MainActivity extends AppCompatActivity {
      *
      * @return total price
      */
-    private int calculatePrice() {
-        int price = quantity * 5;
-        return price;
+    private int calculatePrice(boolean addWhippedCream, boolean addChocolate) {
+        int basePrice = 5;
+        if (addWhippedCream) {
+            basePrice += 1;
+        }
+        if (addChocolate) {
+            basePrice += 2;
+        }
+        return basePrice * quantity;
     }
 
     /**
@@ -79,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param price           of the order
      * @param addWhippedCream is whether or not the user wants a whipped cream topping
-     * @param addChocolate is whether or not the user wants a chocolate topping
-     * @param name of the customer
+     * @param addChocolate    is whether or not the user wants a chocolate topping
+     * @param name            of the customer
      * @return text summary
      */
     private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate, String name) {
