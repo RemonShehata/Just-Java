@@ -1,6 +1,5 @@
 package com.example.justjava;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     public void SubmitOrder(View view) {
         CheckBox whippedCreamCheckBox = findViewById(R.id.whipped_cream_checkbox);
         CheckBox chocolateCheckBox = findViewById(R.id.chocolate_checkbox);
+
         EditText nameEditText = findViewById(R.id.name_edit_text);
         boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
         boolean hasChocolate = chocolateCheckBox.isChecked();
@@ -104,12 +104,12 @@ public class MainActivity extends AppCompatActivity {
      * @return text summary
      */
     private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate, String name) {
-        String priceMessage = "Name: " + name;
-        priceMessage += "\nQuantity: " + quantity;
-        priceMessage += "\nAdd whipped cream? " + addWhippedCream;
-        priceMessage += "\nAdd Chocolate cream? " + addChocolate;
-        priceMessage += "\nTotal: $" + price;
-        priceMessage += "\nThank you!";
+        String priceMessage = getString(R.string.order_summary_name, name);
+        priceMessage += "\n" + getString(R.string.quantity) + ": " + quantity;
+        priceMessage += "\n" + getString(R.string.add_whipped_cream) + addWhippedCream;
+        priceMessage += "\n" + getString(R.string.add_chocolate) + addChocolate;
+        priceMessage += "\n" + getString(R.string.total) + price;
+        priceMessage += "\n" + getString(R.string.thank_you);
         return priceMessage;
     }
 
